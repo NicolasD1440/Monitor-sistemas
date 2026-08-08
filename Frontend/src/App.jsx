@@ -22,7 +22,7 @@ function App() {
                 <Routes>
 
                     <Route
-                        path="/monitor"
+                        path="/"
                         element={<Home />}
                     />
 
