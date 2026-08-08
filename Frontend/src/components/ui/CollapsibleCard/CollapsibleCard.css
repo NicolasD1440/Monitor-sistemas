@@ -1,0 +1,147 @@
+.collapsible-card {
+    width: 100%;
+
+    background: white;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.08);
+
+    overflow: hidden;
+}
+
+
+/* HEADER */
+
+.collapsible-header {
+
+    width: 100%;
+
+    border: none;
+
+    background: transparent;
+
+    padding: 20px 24px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    cursor: pointer;
+
+    text-align: left;
+}
+
+
+.collapsible-title {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+}
+
+
+.collapsible-title h2 {
+
+    margin: 0;
+
+    font-size: 20px;
+}
+
+
+.collapsible-title p {
+
+    margin: 5px 0 0;
+
+    color: #6b7280;
+
+    font-size: 14px;
+}
+
+
+/* ICONO */
+
+.collapsible-icon {
+
+    width: 42px;
+    height: 42px;
+
+    border-radius: 12px;
+
+    background: #eef3ff;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* FLECHA */
+
+.collapse-arrow {
+
+    font-size: 24px;
+
+    color: #64748b;
+
+    transition: transform 0.25s ease;
+}
+
+
+/* CONTENIDO */
+
+.collapsible-content {
+
+    display: grid;
+
+    grid-template-rows: 0fr;
+
+    transition:
+        grid-template-rows 0.3s ease;
+}
+
+
+.collapsible-content-inner {
+
+    overflow: hidden;
+
+    padding: 0 24px;
+}
+
+
+/* ABIERTO */
+
+.collapsible-card.open .collapsible-content {
+
+    grid-template-rows: 1fr;
+}
+
+
+.collapsible-card.open .collapsible-content-inner {
+
+    padding-bottom: 24px;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+
+    .collapsible-header {
+
+        padding: 16px;
+    }
+
+    .collapsible-content-inner {
+
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+}

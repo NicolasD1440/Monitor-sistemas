@@ -1,0 +1,300 @@
+.maintenance-card {
+    width: 100%;
+    max-width: 1180px;
+    margin: 25px auto 0;
+
+    padding: 25px;
+
+    background-color: white;
+
+    border-radius: 20px;
+
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+
+    box-sizing: border-box;
+}
+
+
+/* HEADER */
+
+.maintenance-header {
+    margin-bottom: 20px;
+}
+
+.maintenance-header h2 {
+    margin: 0;
+
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.maintenance-header p {
+    margin: 6px 0 0;
+
+    font-size: 16px;
+    color: #64748b;
+}
+
+
+/* BOTONES */
+
+.maintenance-buttons {
+    display: flex;
+    gap: 15px;
+
+    flex-wrap: wrap;
+}
+
+
+.maintenance-button {
+    padding: 12px 20px;
+
+    border: none;
+    border-radius: 10px;
+
+    background-color: #2196f3;
+    color: white;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+
+.maintenance-button:hover {
+    background-color: #1976d2;
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 5px 12px rgba(33, 150, 243, 0.25);
+}
+
+
+.maintenance-button:active {
+    transform: translateY(0);
+}
+
+
+/* ========================= */
+/* MODAL */
+/* ========================= */
+
+.command-modal-overlay {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background-color: rgba(0, 0, 0, 0.45);
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    z-index: 1000;
+}
+
+
+/* CONTENEDOR */
+
+.command-modal {
+    width: 90%;
+    max-width: 700px;
+
+    background-color: white;
+
+    border-radius: 16px;
+
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+
+    overflow: hidden;
+
+    animation: modalAppear 0.2s ease;
+}
+
+
+/* ANIMACIÓN */
+
+@keyframes modalAppear {
+
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+}
+
+
+/* HEADER MODAL */
+
+.command-modal-header {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 20px 25px;
+
+    border-bottom: 1px solid #e5e7eb;
+}
+
+
+.command-modal-header h2 {
+    margin: 0;
+
+    font-size: 22px;
+}
+
+
+/* BOTÓN X */
+
+.modal-close {
+    border: none;
+
+    background: transparent;
+
+    font-size: 28px;
+
+    color: #64748b;
+
+    cursor: pointer;
+
+    line-height: 1;
+}
+
+
+.modal-close:hover {
+    color: #111827;
+}
+
+
+/* CONTENIDO */
+
+.command-modal-body {
+    padding: 25px;
+
+    max-height: 400px;
+
+    overflow-y: auto;
+}
+
+
+/* RESULTADO DEL COMANDO */
+
+.command-modal-body pre {
+    margin: 0;
+
+    padding: 20px;
+
+    background-color: #111827;
+
+    color: #e5e7eb;
+
+    border-radius: 10px;
+
+    font-family: "Courier New", monospace;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+
+    white-space: pre-wrap;
+
+    overflow-x: auto;
+}
+
+
+/* LOADING */
+
+.loading {
+    margin: 0;
+
+    text-align: center;
+
+    color: #64748b;
+
+    font-size: 16px;
+}
+
+
+/* FOOTER */
+
+.command-modal-footer {
+    display: flex;
+
+    justify-content: flex-end;
+
+    padding: 15px 25px;
+
+    border-top: 1px solid #e5e7eb;
+    gap: 10px;
+}
+
+
+/* BOTÓN CERRAR */
+
+.modal-button {
+    padding: 10px 18px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background-color: #e5e7eb;
+
+    color: #374151;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+.modal-button:hover {
+    background-color: #d1d5db;
+}
+
+.process-table-container {
+    width: 100%;
+    max-height: 400px;
+    overflow-y: auto;
+    overflow-x: auto;
+}
+
+.process-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+}
+
+.process-table th {
+    text-align: left;
+    padding: 12px 10px;
+    border-bottom: 2px solid #ddd;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.process-table td {
+    padding: 12px 10px;
+    border-bottom: 1px solid #eee;
+    white-space: nowrap;
+}
+
+.process-table tbody tr:hover {
+    background-color: #f5f5f5;
+}
