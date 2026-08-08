@@ -13,7 +13,7 @@ import {
 
 function App() {
     return (
-        <BrowserRouter>
+        <BrowserRouter basename="/monitor">
 
             <Sidebar />
 
