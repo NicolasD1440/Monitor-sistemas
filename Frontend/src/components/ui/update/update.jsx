@@ -61,7 +61,7 @@ function Update() {
 
             setResult(
                 "⚠ Hay actualizaciones disponibles.\n\n" +
-                data.updates
+                data.updates.join("\n")
             );
 
         } catch (error) {
@@ -151,11 +151,7 @@ function Update() {
 
 
     return (
-
         <>
-
-            {/* BOTÓN */}
-
             <button
                 onClick={handleCheckUpdates}
                 disabled={loading}
@@ -164,17 +160,13 @@ function Update() {
             </button>
 
 
-            {/* MODAL */}
-
             <Modal
                 isOpen={modalOpen}
                 title="Actualizaciones del sistema"
                 onClose={handleCloseModal}
 
                 footer={
-
                     <>
-
                         <button
                             className="modal-button"
                             onClick={handleCloseModal}
@@ -194,9 +186,7 @@ function Update() {
                             </button>
 
                         )}
-
                     </>
-
                 }
             >
 
@@ -215,9 +205,7 @@ function Update() {
                 )}
 
             </Modal>
-
         </>
-
     );
 }
 
