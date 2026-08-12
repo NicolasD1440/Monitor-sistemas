@@ -1,5 +1,5 @@
 import "./Stats.css";
-import CpuGauge from "../hardware/Cpu";
+import CpuGauge from "../hardware/cpu";
 import RamGauge from "../hardware/ram";
 import DiskGauge from "../hardware/disk";
 

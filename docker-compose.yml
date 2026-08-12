@@ -22,14 +22,7 @@ services:
 
     container_name: frontend
 
-    ports:
-      - "5174:5173"
-
-    volumes:
-      - ./Frontend:/app
-      - /app/node_modules
-
-    restart: unless-stopped
+    restart: "no"
 
     depends_on:
       - backend

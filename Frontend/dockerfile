@@ -1,11 +1,24 @@
-FROM node:22
+# ---------- BUILD ----------
+FROM node:22 AS build
 
 WORKDIR /app
 
 COPY package*.json ./
-
 RUN npm install
 
 COPY . .
 
-CMD ["npm", "run", "dev", "--", "--host"]
+RUN npm run build
+
+
+# ---------- PRODUCCIÓN ----------
+FROM node:22 AS build
+
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm install
+
+COPY . .
+
+RUN npm run build
