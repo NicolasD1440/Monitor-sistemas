@@ -14,13 +14,16 @@ function Processes() {
                 description="Acciones sobre el servidor"
                 icon="📊"
             >
-
                <Update />
                <Reboot />  
-                
-
             </CollapsibleCard>
-
+            <CollapsibleCard
+            title="OCI (Oracle Cloud Infrastructure)"
+            description="acciones sobre OCI"
+            icon="📊"
+            >
+            
+            </CollapsibleCard>
             
 
         </div>

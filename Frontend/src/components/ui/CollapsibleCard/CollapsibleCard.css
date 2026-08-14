@@ -1,14 +1,12 @@
 .collapsible-card {
     width: 100%;
-
     background: white;
-
     border-radius: 18px;
-
     box-shadow:
         0 8px 25px rgba(0, 0, 0, 0.08);
 
     overflow: hidden;
+    margin-bottom: 10px;
 }
 
 
