@@ -1,6 +1,10 @@
 import oci
 
 
+COMPARTMENT_ID = (
+    "ocid1.tenancy.oc1..aaaaaaaadnospqhm3yp5cikh5djpygtcciitqyiq7xgi7pudhkfpigf2vvya"
+)
+
 BOOT_VOLUME_OCID = (
     "ocid1.bootvolume.oc1.iad."
     "abuwcljtpnxkod43ar3etk5ujwc4dheswquuc3td7gumqv6hrblx2s7yexhq"
@@ -50,5 +54,40 @@ def get_backup(backup_id):
         "name": backup.display_name,
         "status": backup.lifecycle_state,
         "size_gb": backup.size_in_gbs,
-        "time_created": backup.time_created
+        "time_created": (
+            backup.time_created.isoformat()
+            if backup.time_created
+            else None
+        )
     }
+
+
+def list_backups():
+    signer = oci.auth.signers.InstancePrincipalsSecurityTokenSigner()
+
+    blockstorage = oci.core.BlockstorageClient(
+        config={},
+        signer=signer
+    )
+
+    response = blockstorage.list_boot_volume_backups(
+        compartment_id=COMPARTMENT_ID,
+        boot_volume_id=BOOT_VOLUME_OCID
+    )
+
+    backups = []
+
+    for backup in response.data:
+        backups.append({
+            "id": backup.id,
+            "name": backup.display_name,
+            "status": backup.lifecycle_state,
+            "size_gb": backup.size_in_gbs,
+            "time_created": (
+                backup.time_created.isoformat()
+                if backup.time_created
+                else None
+            )
+        })
+
+    return backups

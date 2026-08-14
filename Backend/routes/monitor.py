@@ -1,4 +1,4 @@
-from flask import Blueprint
+from flask import Blueprint, jsonify
 
 from services.cpu import get_cpu_usage
 from services.ram import get_ram_usage
@@ -8,7 +8,7 @@ from services.clean_files import get_old_temp_files, clean_temp_files
 from services.processes import get_processes
 from kernel.update import check_updates, update_system
 from services.host_agent import reboot_server
-from OCI.oci_backup import create_backup, get_backup
+from OCI.oci_backup import create_backup, get_backup, list_backups
 
 monitor = Blueprint("monitor", __name__)
 
@@ -85,6 +85,22 @@ def backup_status(backup_id):
             "success": True,
             "backup": result
         })
+
+    except Exception as e:
+        return jsonify({
+            "success": False,
+            "message": str(e)
+        }), 500
+        
+@monitor.route("/backups", methods=["GET"])
+def backups():
+    try:
+        backups = list_backups()
+
+        return jsonify({
+            "success": True,
+            "backups": backups
+        }), 200
 
     except Exception as e:
         return jsonify({
