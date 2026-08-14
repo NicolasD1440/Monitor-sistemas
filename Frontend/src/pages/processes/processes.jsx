@@ -1,6 +1,7 @@
 import CollapsibleCard from "../../components/ui/CollapsibleCard/CollapsibleCard";
 import Update from "../../components/ui/server/update/update.jsx"
 import Reboot from "../../components/ui/server/reboot/reboot.jsx";
+import Backup from "../../components/ui/oci/backup/backup.jsx"
 import "./processes.css"
 
 
@@ -22,7 +23,7 @@ function Processes() {
             description="acciones sobre OCI"
             icon="📊"
             >
-            
+             <Backup />
             </CollapsibleCard>
             
 

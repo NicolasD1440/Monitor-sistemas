@@ -8,6 +8,7 @@ from services.clean_files import get_old_temp_files, clean_temp_files
 from services.processes import get_processes
 from kernel.update import check_updates, update_system
 from services.host_agent import reboot_server
+from OCI.oci_backup import create_backup, get_backup
 
 monitor = Blueprint("monitor", __name__)
 
@@ -56,3 +57,37 @@ def update():
 @monitor.route("/reboot", methods=["POST"])
 def reboot():
     return reboot_server()
+#endpoint backup
+@router.post("/backup")
+def backup():
+    try:
+        result = create_backup()
+
+        return jsonify({
+            "success": True,
+            "message": "Backup iniciado correctamente.",
+            "backup": result
+        }), 202
+
+    except Exception as e:
+        return jsonify({
+            "success": False,
+            "message": str(e)
+        }), 500
+
+
+@router.get("/backup/<backup_id>")
+def backup_status(backup_id):
+    try:
+        result = get_backup(backup_id)
+
+        return jsonify({
+            "success": True,
+            "backup": result
+        })
+
+    except Exception as e:
+        return jsonify({
+            "success": False,
+            "message": str(e)
+        }), 500
