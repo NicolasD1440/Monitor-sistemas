@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify
 
-from Services.Agent import check_updates, update_system
-from Services.System import reboot_server
+from Services.agent import check_updates, update_system
+from Services.system import reboot_server
 
 
 router = Blueprint("router", __name__)

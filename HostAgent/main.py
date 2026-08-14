@@ -1,5 +1,5 @@
 from flask import Flask
-from Routes.Router import router
+from Routes.router import router
 
 
 app = Flask(__name__)
