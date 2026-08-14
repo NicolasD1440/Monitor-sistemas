@@ -17,3 +17,11 @@ node_modules/
 
 # Frontend build
 dist/
+Backend/kernel/__pycache__/update.cpython-312.pyc
+Backend/services/__pycache__/clean_files.cpython-312.pyc
+Backend/services/__pycache__/cpu.cpython-312.pyc
+Backend/services/__pycache__/disk.cpython-312.pyc
+Backend/services/__pycache__/host_agent.cpython-312.pyc
+Backend/services/__pycache__/processes.cpython-312.pyc
+Backend/services/__pycache__/ram.cpython-312.pyc
+Backend/services/__pycache__/space_disk.cpython-312.pyc
