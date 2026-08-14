@@ -7,6 +7,7 @@ from services.space_disk import get_space_disk
 from services.clean_files import get_old_temp_files, clean_temp_files
 from services.processes import get_processes
 from kernel.update import check_updates, update_system
+from services.host_agent import reboot_server
 
 monitor = Blueprint("monitor", __name__)
 
@@ -51,3 +52,7 @@ def updates():
 def update():
 
     return update_system()
+#endpoint reiniciar sistema operativo:
+@monitor.route("/api/reboot", methods=["POST"])
+def reboot():
+    return reboot_server()
