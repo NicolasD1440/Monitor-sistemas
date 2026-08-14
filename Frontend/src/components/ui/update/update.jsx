@@ -6,6 +6,7 @@ import {
 } from "../../../services/updates";
 
 import Modal from "../Modal/modal.jsx";
+import "./update.css"
 
 function Update() {
 
@@ -153,6 +154,7 @@ function Update() {
     return (
         <>
             <button
+                className="update-system"
                 onClick={handleCheckUpdates}
                 disabled={loading}
             >
@@ -179,7 +181,7 @@ function Update() {
                         {updatesAvailable && !loading && (
 
                             <button
-                                className="modal-button primary"
+                                className="modal-button"
                                 onClick={handleUpdateSystem}
                             >
                                 Actualizar

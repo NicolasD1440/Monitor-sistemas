@@ -8,8 +8,8 @@ function Processes() {
         <div className="page">
          
             <CollapsibleCard
-                title="Procesos"
-                description="Procesos actualmente ejecutándose en el servidor"
+                title="Servidor"
+                description="Acciones sobre el servidor"
                 icon="📊"
             >
 

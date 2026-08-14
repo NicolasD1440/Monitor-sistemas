@@ -1,0 +1,11 @@
+.update-system{
+    padding: 12px 20px;
+    border: none;
+    border-radius: 10px;
+    background-color: #2196f3;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
