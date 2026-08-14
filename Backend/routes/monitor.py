@@ -53,6 +53,6 @@ def update():
 
     return update_system()
 #endpoint reiniciar sistema operativo:
-@monitor.route("/api/reboot", methods=["POST"])
+@monitor.route("/reboot", methods=["POST"])
 def reboot():
     return reboot_server()
