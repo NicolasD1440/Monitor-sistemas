@@ -58,7 +58,7 @@ def update():
 def reboot():
     return reboot_server()
 #endpoint backup
-@router.post("/backup")
+@monitor.route("/backup", methods=["POST"])
 def backup():
     try:
         result = create_backup()
@@ -76,7 +76,7 @@ def backup():
         }), 500
 
 
-@router.get("/backup/<backup_id>")
+@monitor.route("/backup/<backup_id>", methods=["GET"])
 def backup_status(backup_id):
     try:
         result = get_backup(backup_id)
