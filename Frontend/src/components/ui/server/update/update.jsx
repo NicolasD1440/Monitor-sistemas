@@ -3,9 +3,9 @@ import { useState } from "react";
 import {
     checkUpdates,
     updateSystem
-} from "../../../services/updates";
+} from "../../../../services/updates.js";
 
-import Modal from "../Modal/modal.jsx";
+import Modal from "../../Modal/modal.jsx";
 import "./update.css"
 
 function Update() {

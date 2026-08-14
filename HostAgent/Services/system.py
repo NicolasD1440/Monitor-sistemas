@@ -18,5 +18,5 @@ def reboot_server():
 
     return {
         "success": True,
-        "message": "El servidor se está reiniciando."
+        "message": "El servidor se esta reiniciando."
     }

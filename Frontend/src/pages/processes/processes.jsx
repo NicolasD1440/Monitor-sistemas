@@ -1,5 +1,7 @@
 import CollapsibleCard from "../../components/ui/CollapsibleCard/CollapsibleCard";
-import Update from "../../components/ui/update/update.jsx"
+import Update from "../../components/ui/server/update/update.jsx"
+import Reboot from "../../components/ui/server/reboot/reboot.jsx";
+import "./processes.css"
 
 
 function Processes() {
@@ -14,6 +16,7 @@ function Processes() {
             >
 
                <Update />
+               <Reboot />  
                 
 
             </CollapsibleCard>
