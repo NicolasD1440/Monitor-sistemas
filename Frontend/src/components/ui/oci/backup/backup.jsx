@@ -1,5 +1,4 @@
-import "./backup.css";
-import { backupOCI } from "../../../../services/backup.js";
+import { backupOCI } from "../../../../services/docker.js";
 import Modal from "../../Modal/modal.jsx";
 import { useState } from "react";
 
