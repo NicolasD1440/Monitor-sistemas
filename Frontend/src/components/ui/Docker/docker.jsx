@@ -5,7 +5,7 @@ import {
     restartContainer
 } from "../../../../services/backup.js";
 
-import Modal from "../../Modal/modal.jsx";
+import Modal from "../Modal/modal.jsx";
 import { useState } from "react";
 
 function Docker() {
