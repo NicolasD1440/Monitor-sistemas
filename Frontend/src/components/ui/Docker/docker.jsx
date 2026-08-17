@@ -1,9 +1,8 @@
-import "./backup.css";
 import {
     getContainers,
     restartAllContainers,
     restartContainer
-} from "../../../../services/backup.js";
+} from "../../../services/docker.js";
 
 import Modal from "../Modal/modal.jsx";
 import { useState } from "react";
