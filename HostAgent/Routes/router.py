@@ -2,12 +2,11 @@ from flask import Blueprint, jsonify
 
 from Services.agent import check_updates, update_system
 from Services.system import reboot_server
-from HostAgent.Services.docker import (
+from Services.docker import (
     get_containers,
     restart_all_containers,
     restart_container
 )
-
 
 router = Blueprint("router", __name__)
 
@@ -22,6 +21,7 @@ def updates():
 def update():
     resultado = update_system()
     status_code = 200 if resultado["success"] else 500
+
     return jsonify(resultado), status_code
 
 
@@ -29,9 +29,12 @@ def update():
 def reboot():
     resultado = reboot_server()
     status_code = 200 if resultado["success"] else 500
+
     return jsonify(resultado), status_code
 
-#endpoint de acceso a docker (acciones)
+
+# Docker
+
 @router.route("/containers", methods=["GET"])
 def containers():
     return jsonify(get_containers())
