@@ -1,17 +1,18 @@
+import "./docker.css";
 import {
     getContainers,
     restartAllContainers,
     restartContainer
-} from "../../../services/docker.js";
+} from "../../../../services/backup.js";
 
-import Modal from "../Modal/modal.jsx";
+import Modal from "../../Modal/modal.jsx";
 import { useState } from "react";
 
-function Backup() {
+function Docker() {
     const [modalOpen, setModalOpen] = useState(false);
     const [loading, setLoading] = useState(false);
-    const [result, setResult] = useState("");
     const [containers, setContainers] = useState([]);
+    const [result, setResult] = useState("");
 
     const handleGetContainers = async () => {
         setModalOpen(true);
@@ -24,10 +25,8 @@ function Backup() {
             console.log("contenedores:", response);
 
             setContainers(response);
-
         } catch (error) {
             console.error("Error al traer la información:", error);
-
             setResult("No se pudo acceder a los contenedores.");
         } finally {
             setLoading(false);
@@ -39,20 +38,20 @@ function Backup() {
             setLoading(true);
             setResult("");
 
-            const response = await restartContainer(containerName);
+            await restartContainer(containerName);
 
-            console.log("Contenedor reiniciado:", response);
+            setResult(
+                `El contenedor "${containerName}" fue reiniciado correctamente.`
+            );
 
-            setResult(`El contenedor "${containerName}" fue reiniciado correctamente.`);
-
-            // Volver a consultar el estado
             const updatedContainers = await getContainers();
             setContainers(updatedContainers);
-
         } catch (error) {
             console.error("Error reiniciando contenedor:", error);
 
-            setResult(`No se pudo reiniciar "${containerName}".`);
+            setResult(
+                `No se pudo reiniciar el contenedor "${containerName}".`
+            );
         } finally {
             setLoading(false);
         }
@@ -63,16 +62,14 @@ function Backup() {
             setLoading(true);
             setResult("");
 
-            const response = await restartAllContainers();
+            await restartAllContainers();
 
-            console.log("Contenedores reiniciados:", response);
+            setResult(
+                "Todos los contenedores fueron reiniciados correctamente."
+            );
 
-            setResult("Todos los contenedores fueron reiniciados correctamente.");
-
-            // Actualizar la lista
             const updatedContainers = await getContainers();
             setContainers(updatedContainers);
-
         } catch (error) {
             console.error("Error reiniciando contenedores:", error);
 
@@ -83,9 +80,7 @@ function Backup() {
     };
 
     const handleCloseModal = () => {
-        if (loading) {
-            return;
-        }
+        if (loading) return;
 
         setModalOpen(false);
     };
@@ -105,38 +100,77 @@ function Backup() {
                 title="Contenedores Docker"
                 onClose={handleCloseModal}
             >
-                {loading ? (
-                    <p>Procesando...</p>
-                ) : (
-                    <>
-                        {result && (
-                            <p>{result}</p>
-                        )}
+                <div className="containers-panel">
 
-                        {containers.length > 0 && (
-                            <>
-                                <button
-                                    onClick={handleRestartAll}
-                                    disabled={loading}
-                                >
-                                    Reiniciar todos
-                                </button>
+                    {loading && containers.length === 0 ? (
+                        <div className="containers-loading">
+                            <div className="loading-spinner"></div>
+                            <p>Consultando contenedores...</p>
+                        </div>
+                    ) : (
+                        <>
+                            {containers.length > 0 && (
+                                <div className="containers-header">
+                                    <div>
+                                        <h3>Contenedores</h3>
+                                        <span>
+                                            {containers.length} contenedores encontrados
+                                        </span>
+                                    </div>
 
+                                    <button
+                                        className="restart-all-button"
+                                        onClick={handleRestartAll}
+                                        disabled={loading}
+                                    >
+                                        ↻ Reiniciar todos
+                                    </button>
+                                </div>
+                            )}
+
+                            {result && (
+                                <div className="container-result">
+                                    {result}
+                                </div>
+                            )}
+
+                            <div className="containers-list">
                                 {containers.map((container) => (
-                                    <div key={container.id}>
-                                        <p>
-                                            <strong>{container.name}</strong>
-                                        </p>
+                                    <div
+                                        className="container-card"
+                                        key={container.id}
+                                    >
+                                        <div className="container-info">
 
-                                        <p>
-                                            Imagen: {container.image}
-                                        </p>
+                                            <div className="container-icon">
+                                                🐳
+                                            </div>
 
-                                        <p>
-                                            Estado: {container.status}
-                                        </p>
+                                            <div className="container-details">
+                                                <h4>
+                                                    {container.name}
+                                                </h4>
+
+                                                <p>
+                                                    {container.image}
+                                                </p>
+
+                                                <span
+                                                    className={`container-status ${
+                                                        container.status === "running"
+                                                            ? "status-running"
+                                                            : "status-stopped"
+                                                    }`}
+                                                >
+                                                    <span className="status-dot"></span>
+
+                                                    {container.status}
+                                                </span>
+                                            </div>
+                                        </div>
 
                                         <button
+                                            className="restart-container-button"
                                             onClick={() =>
                                                 handleRestartContainer(
                                                     container.name
@@ -144,23 +178,26 @@ function Backup() {
                                             }
                                             disabled={loading}
                                         >
-                                            Reiniciar
+                                            {loading
+                                                ? "..."
+                                                : "↻ Reiniciar"}
                                         </button>
-
-                                        <hr />
                                     </div>
                                 ))}
-                            </>
-                        )}
+                            </div>
 
-                        {!result && containers.length === 0 && (
-                            <p>No hay contenedores disponibles.</p>
-                        )}
-                    </>
-                )}
+                            {!result && containers.length === 0 && (
+                                <div className="empty-containers">
+                                    <span>🐳</span>
+                                    <p>No hay contenedores disponibles.</p>
+                                </div>
+                            )}
+                        </>
+                    )}
+                </div>
             </Modal>
         </>
     );
 }
 
-export default Backup;
+export default Docker;
