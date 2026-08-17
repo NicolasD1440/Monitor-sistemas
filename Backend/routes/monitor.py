@@ -9,11 +9,7 @@ from services.processes import get_processes
 from kernel.update import check_updates, update_system
 from services.host_agent import reboot_server
 from OCI.oci_backup import create_backup, get_backup, list_backups
-from services.docker import (
-    get_containers,
-    restart_all_containers,
-    restart_container
-)
+
 
 monitor = Blueprint("monitor", __name__)
 
@@ -113,17 +109,3 @@ def backups():
             "message": str(e)
         }), 500
 
-#endpoint de acceso a docker (acciones)
-@monitor.route("/containers", methods=["GET"])
-def containers():
-    return jsonify(get_containers())
-
-
-@monitor.route("/containers/restart", methods=["POST"])
-def restart_all():
-    return jsonify(restart_all_containers())
-
-
-@monitor.route("/containers/<container_name>/restart", methods=["POST"])
-def restart_one(container_name):
-    return jsonify(restart_container(container_name))
