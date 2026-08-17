@@ -1,41 +1,48 @@
 import CollapsibleCard from "../../components/ui/CollapsibleCard/CollapsibleCard";
-import Update from "../../components/ui/server/update/update.jsx"
+import Update from "../../components/ui/server/update/update.jsx";
 import Reboot from "../../components/ui/server/reboot/reboot.jsx";
-import Backup from "../../components/ui/oci/backup/backup.jsx"
+import Backup from "../../components/ui/oci/backup/backup.jsx";
 import Backups from "../../components/ui/oci/getBackups/backups.jsx";
-import Docker from "../../components/ui/Docker/docker.jsx"
-import "./processes.css"
+import Docker from "../../components/ui/Docker/docker.jsx";
 
+import {
+    Server,
+    Cloud,
+    Container
+} from "lucide-react";
+
+import "./processes.css";
 
 function Processes() {
 
     return (
         <div className="page">
-         
+
             <CollapsibleCard
                 title="Servidor"
                 description="Acciones sobre el servidor"
-                icon="📊"
+                icon={<Server size={22} strokeWidth={1.8} />}
             >
-               <Update />
-               <Reboot />  
+                <Update />
+                <Reboot />
             </CollapsibleCard>
+
             <CollapsibleCard
-            title="OCI (Oracle Cloud Infrastructure)"
-            description="acciones sobre OCI"
-            icon="📊"
+                title="OCI (Oracle Cloud Infrastructure)"
+                description="Acciones sobre OCI"
+                icon={<Cloud size={22} strokeWidth={1.8} />}
             >
-             <Backup />
-             <Backups />
+                <Backup />
+                <Backups />
             </CollapsibleCard>
+
             <CollapsibleCard
-            title="Docker"
-            description="acciones sobre Docker"
-            icon="📊"
+                title="Docker"
+                description="Acciones sobre Docker"
+                icon={<Container size={22} strokeWidth={1.8} />}
             >
-            <Docker />
+                <Docker />
             </CollapsibleCard>
-            
 
         </div>
     );
