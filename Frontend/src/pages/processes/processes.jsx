@@ -27,6 +27,13 @@ function Processes() {
              <Backup />
              <Backups />
             </CollapsibleCard>
+            <CollapsibleCard
+            title="Docker"
+            description="acciones sobre Docker"
+            icon="📊"
+            >
+            
+            </CollapsibleCard>
             
 
         </div>
